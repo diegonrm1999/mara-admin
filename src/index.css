@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #875264;
+  --color-primary-light: #a06b7d;
+  --color-primary-dark: #6b3f4f;
+  --color-secondary: #BC687F;
+  --color-secondary-light: #d48a9e;
+  --color-tertiary: #c4858e;
+  --color-surface: #eddcdc;
+  --color-surface-light: #f5e4e6;
+  --color-surface-lighter: #fff9f9;
+  --color-surface-glass: rgba(237, 220, 220, 0.65);
+  --color-surface-card: rgba(255, 249, 249, 0.75);
+  --color-text-primary: #875264;
+  --color-text-body: #5a3a45;
+  --color-text-muted: #9a7682;
+  --color-text-light: #b89ba5;
+  --color-success: #6b9e7c;
+  --color-warning: #d4a853;
+  --color-danger: #c45c5c;
+  --color-info: #6b8a9e;
+
+  --font-headline: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --radius-sm: 0.75rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-2xl: 3rem;
+}
+
+/* ─── Base Resets ─────────────────────────────── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text-body);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-light) 50%, var(--color-surface-lighter) 100%);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline);
+  color: var(--color-text-primary);
+}
+
+/* ─── Glassmorphism Utilities ─────────────────── */
+.glass {
+  background: var(--color-surface-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    0 4px 30px rgba(135, 82, 100, 0.08),
+    0 1px 3px rgba(135, 82, 100, 0.04);
+}
+
+.glass-strong {
+  background: rgba(255, 249, 249, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 8px 40px rgba(135, 82, 100, 0.1),
+    0 2px 8px rgba(135, 82, 100, 0.06);
+}
+
+.modal-panel {
+  background: #fff9f9;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 12px 48px rgba(135, 82, 100, 0.15),
+    0 4px 12px rgba(135, 82, 100, 0.08);
+}
+
+.glass-sidebar {
+  background: rgba(135, 82, 100, 0.95);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ─── Animations ──────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.4s ease-out forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+/* Staggered children animation */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.30s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.40s; }
+
+/* ─── Scrollbar Styling ───────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(135, 82, 100, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(135, 82, 100, 0.35);
+}
+
+/* ─── Form Input Focus Rings ──────────────────── */
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(135, 82, 100, 0.15), 0 0 0 1px rgba(135, 82, 100, 0.3);
+}
+
+/* ─── Status Badge Colors ─────────────────────── */
+.badge-pending {
+  background: linear-gradient(135deg, rgba(212, 168, 83, 0.15), rgba(212, 168, 83, 0.25));
+  color: #9a7a30;
+  border: 1px solid rgba(212, 168, 83, 0.3);
+}
+
+.badge-confirmed {
+  background: linear-gradient(135deg, rgba(107, 158, 124, 0.15), rgba(107, 158, 124, 0.25));
+  color: #4a7a5a;
+  border: 1px solid rgba(107, 158, 124, 0.3);
+}
+
+.badge-cancelled {
+  background: linear-gradient(135deg, rgba(196, 92, 92, 0.15), rgba(196, 92, 92, 0.25));
+  color: #8a3a3a;
+  border: 1px solid rgba(196, 92, 92, 0.3);
+}
+
+.badge-noshow {
+  background: linear-gradient(135deg, rgba(156, 120, 130, 0.15), rgba(156, 120, 130, 0.25));
+  color: #6a4a52;
+  border: 1px solid rgba(156, 120, 130, 0.3);
+}
+
+.badge-completed {
+  background: linear-gradient(135deg, rgba(107, 138, 158, 0.15), rgba(107, 138, 158, 0.25));
+  color: #3a6a8a;
+  border: 1px solid rgba(107, 138, 158, 0.3);
+}
