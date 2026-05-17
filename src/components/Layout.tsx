@@ -7,6 +7,7 @@ export default function Layout() {
   const navigate = useNavigate();
   const logout = useAuthStore((state) => state.logout);
   const user = useAuthStore((state) => state.user);
+  
 
   const handleLogout = () => {
     logout();
