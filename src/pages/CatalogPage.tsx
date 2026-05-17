@@ -11,13 +11,13 @@ import type { TreatmentCategory, Treatment } from '../types';
 
 const categorySchema = z.object({
   name: z.string().min(2, 'Nombre requerido'),
-  displayOrder: z.number().min(0).default(0),
+  displayOrder: z.number().min(0),
 });
 
 const treatmentSchema = z.object({
   name: z.string().min(2, 'Nombre requerido'),
   description: z.string().optional(),
-  categoryId: z.string().optional().transform(v => v === '' ? undefined : v),
+  categoryId: z.string().optional(),
   percentage: z.number().min(0).max(100, 'Debe ser entre 0 y 100'),
   basePrice: z.number().min(0).optional(),
 });
@@ -103,7 +103,13 @@ export default function CatalogPage() {
   });
 
   const onCategorySubmit = (data: CategoryFormValues) => createCategory.mutate(data);
-  const onTreatmentSubmit = (data: TreatmentFormValues) => createTreatment.mutate(data);
+  const onTreatmentSubmit = (data: TreatmentFormValues) => {
+    const payload = {
+      ...data,
+      categoryId: data.categoryId === '' ? undefined : data.categoryId,
+    };
+    createTreatment.mutate(payload);
+  };
 
   return (
     <div className="max-w-6xl mx-auto pb-12">

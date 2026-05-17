@@ -140,7 +140,7 @@ export default function UsersPage() {
     defaultValues: { role: 'Stylist' },
   });
 
-  const { register: registerSchedule, handleSubmit: handleScheduleSubmit, reset: resetScheduleForm, formState: { errors: scheduleErrors } } = useForm<ScheduleFormValues>({
+  const { register: registerSchedule, handleSubmit: handleScheduleSubmit, reset: resetScheduleForm } = useForm<ScheduleFormValues>({
     resolver: zodResolver(scheduleSchema),
     defaultValues: { dayOfWeek: 1, startTime: '09:00', endTime: '18:00' }
   });
